@@ -1,0 +1,1071 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Entity Store defaulttenant",
+    "description": "OpenAPI Specification for defaulttenant entity store."
+  },
+  "paths": {
+    "/EntityService/Olympics/read": {
+      "get": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Lists Olympics records.",
+        "operationId": "Get Olympics records",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Read"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "description": "Position of the first item to return.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "0"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "description": "How many items to return at one time.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "20"
+            },
+            "required": false
+          },
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlympicsQueryResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/read/{id}": {
+      "get": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Retrieves a single Olympics record by Id.",
+        "operationId": "Get Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Read"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the item.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "default": null
+            },
+            "required": true
+          },
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Olympics"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/query": {
+      "post": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Query Olympics records.",
+        "operationId": "Query Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Read"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlympicsQueryResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Delete an existing Olympics record.",
+        "operationId": "Delete Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the item.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "default": null
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/update/{id}": {
+      "post": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Updates an existing Olympics record.",
+        "operationId": "Update Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the item.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "default": null
+            },
+            "required": true
+          },
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Olympics"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Olympics"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/insert": {
+      "post": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Creates a new Olympics record.",
+        "operationId": "Add Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Olympics"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Olympics"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/insert-batch": {
+      "post": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Creates new Olympics records in a batch.",
+        "operationId": "Batch Add Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          },
+          {
+            "name": "failOnFirst",
+            "description": "Indicate whether to continue on the first failure.",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "format": "string",
+              "default": "false"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Olympics"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlympicsBatchResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/update-batch": {
+      "post": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Updates Olympics records in a batch.",
+        "operationId": "Batch Update Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          },
+          {
+            "name": "failOnFirst",
+            "description": "Indicate whether to continue on the first failure.",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "format": "string",
+              "default": "false"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Olympics"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlympicsBatchResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/EntityService/Olympics/delete-batch": {
+      "post": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Deletes Olympics records in a batch.",
+        "operationId": "Batch Delete Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "failOnFirst",
+            "description": "Indicate whether to continue on the first failure.",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "format": "string",
+              "default": "false"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Id"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OlympicsBatchResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    },
+    "/Attachment/Olympics/{recordId}/{fieldName}": {
+      "get": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Download attachment from Olympics record.",
+        "operationId": "Download from Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Read"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recordId",
+            "description": "The id of the record.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "default": null
+            },
+            "required": true
+          },
+          {
+            "name": "fieldName",
+            "description": "Attachment field name in entity $Olympics.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "default": null
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Upload file to Olympics record.",
+        "operationId": "Upload file to Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recordId",
+            "description": "The id of the record.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "default": null
+            },
+            "required": true
+          },
+          {
+            "name": "fieldName",
+            "description": "Attachment field name in entity $Olympics.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "default": null
+            },
+            "required": true
+          },
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Olympics"
+        ],
+        "description": "Delete file from Olympics record.",
+        "operationId": "Delete file from Olympics",
+        "security": [
+          {
+            "bearerAuth": [
+              "DataService.Data.Write"
+            ]
+          },
+          {
+            "oauth2": [
+              "DataService.Data.Write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recordId",
+            "description": "The id of the record.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "default": null
+            },
+            "required": true
+          },
+          {
+            "name": "fieldName",
+            "description": "Attachment field name in entity $Olympics.",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "default": null
+            },
+            "required": true
+          },
+          {
+            "name": "expansionLevel",
+            "description": "Entity expansion level.",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "2"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://staging.uipath.com/danielac/defaulttenant/dataservice_/api"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "OlympicsVersion": {
+        "type": "integer",
+        "enum": [
+          0,
+          1
+        ],
+        "x-enum-varnames": [
+          "OlympicsVersion",
+          "Winter"
+        ]
+      },
+      "Olympics": {
+        "type": "object",
+        "properties": {
+          "ClosingDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "Logo": {
+            "$ref": "#/components/schemas/EntityAttachment"
+          },
+          "Name": {
+            "type": "string",
+            "format": "",
+            "nullable": false
+          },
+          "Nations": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "OlympicsVersion": {
+            "$ref": "#/components/schemas/OlympicsVersion"
+          },
+          "OpeningDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "UpdatedBy": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "UpdateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "CreateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": false
+          },
+          "Id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": false
+          },
+          "CreatedBy": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": false
+          }
+        },
+        "required": [
+          "Name"
+        ]
+      },
+      "OlympicsQueryResponse": {
+        "type": "object",
+        "properties": {
+          "TotalRecordCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Olympics"
+            }
+          }
+        }
+      },
+      "OlympicsBatchResponse": {
+        "type": "object",
+        "properties": {
+          "successRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Olympics"
+            }
+          },
+          "failureRecords": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string"
+              },
+              "record": {
+                "$ref": "#/components/schemas/Olympics"
+              }
+            }
+          }
+        }
+      },
+      "QueryRequest": {
+        "type": "object",
+        "properties": {
+          "selectedFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "filterGroup": {
+            "$ref": "#/components/schemas/QueryFilterGroup"
+          },
+          "start": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sortOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortOption"
+            }
+          }
+        }
+      },
+      "SortOption": {
+        "type": "object",
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "format": ""
+          },
+          "isDescending": {
+            "type": "boolean",
+            "format": ""
+          }
+        }
+      },
+      "QueryFilterGroup": {
+        "type": "object",
+        "properties": {
+          "logicalOperator": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1
+          },
+          "queryFilters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryFilter"
+            }
+          },
+          "filterGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryFilterGroup"
+            }
+          }
+        }
+      },
+      "QueryFilter": {
+        "type": "object",
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "format": ""
+          },
+          "operator": {
+            "type": "string",
+            "format": ""
+          },
+          "value": {
+            "type": "string",
+            "format": ""
+          }
+        }
+      },
+      "Boolean": {
+        "type": "boolean"
+      },
+      "Id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "EntityAttachment": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "format": ""
+          },
+          "Path": {
+            "type": "string",
+            "format": ""
+          },
+          "Size": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "Type": {
+            "type": "string",
+            "format": ""
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "tokenUrl": "https://staging.uipath.com/identity_/connect/token",
+            "authorizationUrl": "https://staging.uipath.com/identity_/connect/authorize",
+            "scopes": {
+              "DataService.Schema.Read": "Entity Schema Read",
+              "DataService.Data.Read": "Entity Data Read",
+              "DataService.Data.Write": "Entity Data Write"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "UnauthorizedError": {
+        "description": "You are not authenticated to access Data Service. Make sure your Assistant or Robot is connected to a modern folder in your account."
+      },
+      "ForbiddenError": {
+        "description": "You don't have permission to access the entity, field or record or you are using an unsupported robot type. Please contact your administrator for necessary permissions."
+      }
+    }
+  }
+}
